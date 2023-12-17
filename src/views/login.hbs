@@ -31,16 +31,39 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
         <script>
             function restorePassword() {
                 var emailValue = document.getElementById("email").value;
-                document.getElementById("restoreForm").action = "/restore?email=" + emailValue;
-                document.getElementById("restoreForm").submit();
+
+                // Verifica si el campo de correo electrónico está vacío
+                if (emailValue.trim() === "") {
+                    // Muestra un SweetAlert pidiendo el ingreso de un correo electrónico
+                    Swal.fire({
+                        title: 'Ingrese su correo electrónico',
+                        text: 'Por favor, ingrese su dirección de correo electrónico para restablecer la contraseña.',
+                        icon: 'warning',
+                        confirmButtonText: 'Aceptar'
+                    });
+                } else {
+                    // Configura la acción del formulario y lo envía
+                    document.getElementById("restoreForm").action = "/restore?email=" + emailValue;
+                    document.getElementById("restoreForm").submit();
+
+                    // Muestra un SweetAlert indicando que el correo electrónico se ha enviado correctamente
+                    Swal.fire({
+                        title: 'Correo electrónico enviado',
+                        text: 'Se ha enviado un correo electrónico para restablecer la contraseña. Por favor, revise su bandeja de entrada.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
             }
         </script>
     </div>
 </body>
 
 </html>
+
+
+
 
