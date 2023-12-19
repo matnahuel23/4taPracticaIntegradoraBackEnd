@@ -25,7 +25,7 @@ const io = new Server(server);
 const initializePassport = require('./config/passport.js');
 
 // ENV
-const PORT = config.port;
+const PORT = config.port || 8080;
 const cookiePass = config.cookiePass;
 const adminPass = config.adminPass;
 const mongoURL = config.mongoUrl;
